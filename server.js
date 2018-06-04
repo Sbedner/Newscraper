@@ -23,7 +23,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // CONNECT TO Mongo DB
-mongoose.connect("mongodb://localhost/articles");
+let mongoConnect = process.env.MONGODB_URI ||"mongodb://localhost/articles"
+mongoose.connect(mongoConnect);
+mongoose.Promise = global.Promise;
+// mongoose.connect("mongodb://localhost/articles");
 
 // =====ROUTES
 
